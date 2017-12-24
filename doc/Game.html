@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Game - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-count_neighbors">#count_neighbors</a>
+    
+    <li ><a href="#method-i-draw">#draw</a>
+    
+    <li ><a href="#method-i-into_range">#into_range</a>
+    
+    <li ><a href="#method-i-next">#next</a>
+    
+    <li ><a href="#method-i-to_binary">#to_binary</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Game">
+  <h1 id="class-Game" class="class">
+    class Game
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-gameboard" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">gameboard</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(rows, cols, grid=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File game.rb, line 8</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">rows</span>, <span class="ruby-identifier">cols</span>, <span class="ruby-identifier">grid</span>=<span class="ruby-keyword">nil</span>)
+            <span class="ruby-ivar">@rows</span>, <span class="ruby-ivar">@cols</span> = <span class="ruby-identifier">rows</span>, <span class="ruby-identifier">cols</span>
+<span class="ruby-comment"># If there is a grid, initialize the board based on it</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">grid</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+                    <span class="ruby-ivar">@gameboard</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">rows</span>) { <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">cols</span>) }
+                    <span class="ruby-identifier">grid</span>.<span class="ruby-identifier">each_with_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span>, <span class="ruby-identifier">ri</span><span class="ruby-operator">|</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">each_with_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>, <span class="ruby-identifier">ci</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@gameboard</span>[<span class="ruby-identifier">ri</span>][<span class="ruby-identifier">ci</span>] = <span class="ruby-constant">Cell</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">STATES</span>[<span class="ruby-identifier">c</span>]) } }
+            <span class="ruby-keyword">else</span>
+  <span class="ruby-comment"># If there is no grid, initialize the board with a random state</span>
+                    <span class="ruby-ivar">@gameboard</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">rows</span>) { <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">cols</span>, <span class="ruby-constant">Cell</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">STATES</span>[<span class="ruby-identifier">rand</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">1</span>)])) }
+            <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-count_neighbors" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">count_neighbors</span><span
+            class="method-args">(row, col)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Count the number of living neighbors of a cell</p>
+
+<h2 id="method-i-count_neighbors-label-Parameters-3A">Parameters:<span><a href="#method-i-count_neighbors-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt>row
+<dd>
+<p>The cell&#39;s row</p>
+</dd><dt>col
+<dd>
+<p>The cell&#39;s column</p>
+</dd></dl>
+
+<h2 id="method-i-count_neighbors-label-Returns-3A">Returns:<span><a href="#method-i-count_neighbors-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>An integer that represents the total number of living neighbors</p>
+          
+          
+
+          
+          <div class="method-source-code" id="count_neighbors-source">
+            <pre><span class="ruby-comment"># File game.rb, line 44</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">count_neighbors</span>(<span class="ruby-identifier">row</span>, <span class="ruby-identifier">col</span>)
+<span class="ruby-comment"># Positions of all possible neighbors of a cell</span>
+            <span class="ruby-identifier">distance</span> = [[<span class="ruby-value">0</span>, <span class="ruby-value">1</span>], [<span class="ruby-value">-1</span>, <span class="ruby-value">1</span>], [<span class="ruby-value">-1</span>, <span class="ruby-value">0</span>], [<span class="ruby-value">-1</span>, <span class="ruby-value">-1</span>], [<span class="ruby-value">0</span>, <span class="ruby-value">-1</span>], [<span class="ruby-value">1</span>, <span class="ruby-value">0</span>], [<span class="ruby-value">1</span>, <span class="ruby-value">-1</span>], [<span class="ruby-value">1</span>, <span class="ruby-value">1</span>]]
+            <span class="ruby-identifier">total</span> = <span class="ruby-value">0</span>
+
+<span class="ruby-comment"># Count the living neighbors of every cell</span>
+            <span class="ruby-keyword">for</span> <span class="ruby-identifier">r</span>, <span class="ruby-identifier">c</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">distance</span>
+                    <span class="ruby-keyword">if</span> <span class="ruby-identifier">into_range</span>(<span class="ruby-identifier">r</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">row</span>, <span class="ruby-identifier">c</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">col</span>)
+                            <span class="ruby-identifier">total</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@gameboard</span>[<span class="ruby-identifier">r</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">row</span>][<span class="ruby-identifier">c</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">col</span>].<span class="ruby-identifier">is_alive?</span> <span class="ruby-operator">?</span> <span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+                    <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">end</span>
+            <span class="ruby-identifier">total</span>
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-draw" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">draw</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="draw-source">
+            <pre><span class="ruby-comment"># File game.rb, line 95</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">draw</span>
+          <span class="ruby-keyword">for</span> <span class="ruby-identifier">row</span> <span class="ruby-keyword">in</span> <span class="ruby-ivar">@gameboard</span>
+<span class="ruby-identifier">print</span> <span class="ruby-string">&quot; &quot;</span>
+                  <span class="ruby-keyword">for</span> <span class="ruby-identifier">cell</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">row</span>
+                          <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;@ &quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">cell</span>.<span class="ruby-identifier">is_alive?</span>
+                          <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;. &quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">cell</span>.<span class="ruby-identifier">is_alive?</span>
+                  <span class="ruby-keyword">end</span>
+                  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;&quot;</span>
+          <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-into_range" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">into_range</span><span
+            class="method-args">(x, y)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Verify that a cell has a valid position on the board</p>
+
+<h2 id="method-i-into_range-label-Parameters-3A">Parameters:<span><a href="#method-i-into_range-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt>x
+<dd>
+<p>The cell&#39;s row</p>
+</dd><dt>y
+<dd>
+<p>The cell&#39;s column</p>
+</dd></dl>
+
+<h2 id="method-i-into_range-label-Returns-3A">Returns:<span><a href="#method-i-into_range-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>A boolean, true if the position is valid otherwise return false</p>
+          
+          
+
+          
+          <div class="method-source-code" id="into_range-source">
+            <pre><span class="ruby-comment"># File game.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">into_range</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>)
+        <span class="ruby-identifier">x</span>.<span class="ruby-identifier">between?</span>(<span class="ruby-value">0</span>, <span class="ruby-ivar">@rows</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">y</span>.<span class="ruby-identifier">between?</span>(<span class="ruby-value">0</span>, <span class="ruby-ivar">@cols</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-next" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">next</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates the next generation of the board</p>
+          
+          
+
+          
+          <div class="method-source-code" id="next-source">
+            <pre><span class="ruby-comment"># File game.rb, line 59</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-keyword">next</span>
+<span class="ruby-comment"># Create copy of actual state of the game</span>
+            <span class="ruby-identifier">new_game</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">load</span>(<span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-ivar">@gameboard</span>))
+<span class="ruby-identifier">new_game</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span>, <span class="ruby-identifier">ri</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cell</span>, <span class="ruby-identifier">ci</span><span class="ruby-operator">|</span>
+    <span class="ruby-comment"># Calculating the number of living neighbors</span>
+    <span class="ruby-identifier">neighbors</span> = <span class="ruby-identifier">count_neighbors</span>(<span class="ruby-identifier">ri</span>, <span class="ruby-identifier">ci</span>)
+    <span class="ruby-comment"># Rule 1: Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.</span>
+    <span class="ruby-comment"># Rule 3: Any live cell with more than three live neighbours dies, as if by overpopulation</span>
+    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">neighbors</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">neighbors</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">cell</span>.<span class="ruby-identifier">is_alive?</span>
+      <span class="ruby-identifier">new_game</span>[<span class="ruby-identifier">ri</span>][<span class="ruby-identifier">ci</span>] = <span class="ruby-constant">Cell</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Dead</span>.<span class="ruby-identifier">new</span>)
+    <span class="ruby-comment"># Rule 4: Any dead cell with exactly three live neighbours</span>
+    <span class="ruby-comment"># becomes a live cell, as if by reproduction</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">neighbors</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">cell</span>.<span class="ruby-identifier">is_alive?</span>
+      <span class="ruby-identifier">new_game</span>[<span class="ruby-identifier">ri</span>][<span class="ruby-identifier">ci</span>] = <span class="ruby-constant">Cell</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Alive</span>.<span class="ruby-identifier">new</span>)
+    <span class="ruby-comment"># Rule 2: Any live cell with two or three live neighbours</span>
+    <span class="ruby-comment"># lives on to the next generation. (It is not necessary)</span>
+    <span class="ruby-comment"># elsif neighbors &gt; 2 and cell.is_alive?</span>
+    <span class="ruby-comment">#   new_game[ri][ci] = Cell.new(Alive.new)</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+            <span class="ruby-ivar">@gameboard</span> = <span class="ruby-identifier">new_game</span>.<span class="ruby-identifier">clone</span>
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_binary" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_binary</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create a board on a binary basis (0, 1)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_binary-source">
+            <pre><span class="ruby-comment"># File game.rb, line 85</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_binary</span>
+<span class="ruby-identifier">new_game</span> = <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">load</span>(<span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-ivar">@gameboard</span>))
+            <span class="ruby-keyword">for</span> <span class="ruby-identifier">r</span> <span class="ruby-keyword">in</span> (<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-ivar">@rows</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)
+                    <span class="ruby-keyword">for</span> <span class="ruby-identifier">c</span> <span class="ruby-keyword">in</span> (<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-ivar">@cols</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)
+    <span class="ruby-identifier">new_game</span>[<span class="ruby-identifier">r</span>][<span class="ruby-identifier">c</span>] = (<span class="ruby-identifier">new_game</span>[<span class="ruby-identifier">r</span>][<span class="ruby-identifier">c</span>].<span class="ruby-identifier">is_alive?</span>) <span class="ruby-operator">?</span> <span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
+                    <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">end</span>
+<span class="ruby-identifier">new_game</span>
+    <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
