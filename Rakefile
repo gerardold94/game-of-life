@@ -9,5 +9,5 @@ task :test do
 end
 
 task :docs do
-  sh "rdoc"
+  sh "rdoc -o docs"
 end
